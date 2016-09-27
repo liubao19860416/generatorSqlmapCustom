@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crt.openapi.modules.apiinterface.domain.dao.ApiInterfaceMapper" >
+  <resultMap id="BaseResultMap" type="com.crt.openapi.modules.apiinterface.domain.entity.ApiInterface" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="api_id" property="apiId" jdbcType="VARCHAR" />
+    <result column="api_name" property="apiName" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="app_id" property="appId" jdbcType="DECIMAL" />
+    <result column="day_maxnum" property="dayMaxnum" jdbcType="DECIMAL" />
+    <result column="target_url" property="targetUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+    <result column="updater" property="updater" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, api_id, api_name, description, version, app_id, day_maxnum, target_url, status, 
+    sort, remark, del_flag, create_date, creater, update_date, updater
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.crt.openapi.modules.apiinterface.domain.entity.ApiInterfaceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from api_interface
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from api_interface
+    where id = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from api_interface
+    where id = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity.ApiInterfaceExample" >
+    delete from api_interface
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.crt.openapi.modules.apiinterface.domain.entity.ApiInterface" >
+    insert into api_interface (id, api_id, api_name, 
+      description, version, app_id, 
+      day_maxnum, target_url, status, 
+      sort, remark, del_flag, 
+      create_date, creater, update_date, 
+      updater)
+    values (#{id,jdbcType=DECIMAL}, #{apiId,jdbcType=VARCHAR}, #{apiName,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{appId,jdbcType=DECIMAL}, 
+      #{dayMaxnum,jdbcType=DECIMAL}, #{targetUrl,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}, 
+      #{createDate,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{updateDate,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity.ApiInterface" >
+    insert into api_interface
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="apiId != null" >
+        api_id,
+      </if>
+      <if test="apiName != null" >
+        api_name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="dayMaxnum != null" >
+        day_maxnum,
+      </if>
+      <if test="targetUrl != null" >
+        target_url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updater != null" >
+        updater,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="apiId != null" >
+        #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null" >
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=DECIMAL},
+      </if>
+      <if test="dayMaxnum != null" >
+        #{dayMaxnum,jdbcType=DECIMAL},
+      </if>
+      <if test="targetUrl != null" >
+        #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity.ApiInterfaceExample" resultType="java.lang.Integer" >
+    select count(*) from api_interface
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update api_interface
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.apiId != null" >
+        api_id = #{record.apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiName != null" >
+        api_name = #{record.apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appId != null" >
+        app_id = #{record.appId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dayMaxnum != null" >
+        day_maxnum = #{record.dayMaxnum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.targetUrl != null" >
+        target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creater != null" >
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updater != null" >
+        updater = #{record.updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update api_interface
+    set id = #{record.id,jdbcType=DECIMAL},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=DECIMAL},
+      day_maxnum = #{record.dayMaxnum,jdbcType=DECIMAL},
+      target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      create_date = #{record.createDate,jdbcType=VARCHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=VARCHAR},
+      updater = #{record.updater,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity.ApiInterface" >
+    update api_interface
+    <set >
+      <if test="apiId != null" >
+        api_id = #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null" >
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=DECIMAL},
+      </if>
+      <if test="dayMaxnum != null" >
+        day_maxnum = #{dayMaxnum,jdbcType=DECIMAL},
+      </if>
+      <if test="targetUrl != null" >
+        target_url = #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null" >
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.openapi.modules.apiinterface.domain.entity.ApiInterface" >
+    update api_interface
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=DECIMAL},
+      day_maxnum = #{dayMaxnum,jdbcType=DECIMAL},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=VARCHAR},
+      updater = #{updater,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

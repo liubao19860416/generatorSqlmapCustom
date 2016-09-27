@@ -1,0 +1,1980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crt.openapi.modules.apiinterface.domain.dao1.ApiInterfaceMapper">
+  <resultMap id="BaseResultMap" type="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterface">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="api_id" jdbcType="VARCHAR" property="apiId" />
+    <result column="api_name" jdbcType="VARCHAR" property="apiName" />
+    <result column="target_url" jdbcType="VARCHAR" property="targetUrl" />
+    <result column="sandbox_target_url" jdbcType="VARCHAR" property="sandboxTargetUrl" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="org_id" jdbcType="VARCHAR" property="orgId" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="column_code" jdbcType="VARCHAR" property="columnCode" />
+    <result column="auth" jdbcType="VARCHAR" property="auth" />
+    <result column="auth_codes" jdbcType="VARCHAR" property="authCodes" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    <result column="api_desc" jdbcType="LONGVARCHAR" property="apiDesc" />
+    <result column="test_case" jdbcType="LONGVARCHAR" property="testCase" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, api_id, api_name, target_url, sandbox_target_url, status, del_flag, creater, 
+    create_time, updater, update_time, version, org_id, app_id, column_code, auth, auth_codes
+  </sql>
+  <sql id="Blob_Column_List">
+    api_desc, test_case
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from api_interface
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from api_interface
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample">
+    delete from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    insert into api_interface (id, api_id, api_name, 
+      target_url, sandbox_target_url, status, 
+      del_flag, creater, create_time, 
+      updater, update_time, version, 
+      org_id, app_id, column_code, 
+      auth, auth_codes, api_desc, 
+      test_case)
+    values (#{id,jdbcType=INTEGER}, #{apiId,jdbcType=VARCHAR}, #{apiName,jdbcType=VARCHAR}, 
+      #{targetUrl,jdbcType=VARCHAR}, #{sandboxTargetUrl,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{columnCode,jdbcType=VARCHAR}, 
+      #{auth,jdbcType=VARCHAR}, #{authCodes,jdbcType=VARCHAR}, #{apiDesc,jdbcType=LONGVARCHAR}, 
+      #{testCase,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    insert into api_interface
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="apiId != null">
+        api_id,
+      </if>
+      <if test="apiName != null">
+        api_name,
+      </if>
+      <if test="targetUrl != null">
+        target_url,
+      </if>
+      <if test="sandboxTargetUrl != null">
+        sandbox_target_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="columnCode != null">
+        column_code,
+      </if>
+      <if test="auth != null">
+        auth,
+      </if>
+      <if test="authCodes != null">
+        auth_codes,
+      </if>
+      <if test="apiDesc != null">
+        api_desc,
+      </if>
+      <if test="testCase != null">
+        test_case,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="apiId != null">
+        #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null">
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null">
+        #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxTargetUrl != null">
+        #{sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCode != null">
+        #{columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="authCodes != null">
+        #{authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        #{apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="testCase != null">
+        #{testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultType="java.lang.Integer">
+    select count(*) from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update api_interface
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.apiId != null">
+        api_id = #{record.apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiName != null">
+        api_name = #{record.apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetUrl != null">
+        target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sandboxTargetUrl != null">
+        sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.creater != null">
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgId != null">
+        org_id = #{record.orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.columnCode != null">
+        column_code = #{record.columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auth != null">
+        auth = #{record.auth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authCodes != null">
+        auth_codes = #{record.authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiDesc != null">
+        api_desc = #{record.apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.testCase != null">
+        test_case = #{record.testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update api_interface
+    set id = #{record.id,jdbcType=INTEGER},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=VARCHAR},
+      org_id = #{record.orgId,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      column_code = #{record.columnCode,jdbcType=VARCHAR},
+      auth = #{record.auth,jdbcType=VARCHAR},
+      auth_codes = #{record.authCodes,jdbcType=VARCHAR},
+      api_desc = #{record.apiDesc,jdbcType=LONGVARCHAR},
+      test_case = #{record.testCase,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update api_interface
+    set id = #{record.id,jdbcType=INTEGER},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=VARCHAR},
+      org_id = #{record.orgId,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      column_code = #{record.columnCode,jdbcType=VARCHAR},
+      auth = #{record.auth,jdbcType=VARCHAR},
+      auth_codes = #{record.authCodes,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    update api_interface
+    <set>
+      <if test="apiId != null">
+        api_id = #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null">
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null">
+        target_url = #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxTargetUrl != null">
+        sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCode != null">
+        column_code = #{columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        auth = #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="authCodes != null">
+        auth_codes = #{authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        api_desc = #{apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="testCase != null">
+        test_case = #{testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    update api_interface
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      auth = #{auth,jdbcType=VARCHAR},
+      auth_codes = #{authCodes,jdbcType=VARCHAR},
+      api_desc = #{apiDesc,jdbcType=LONGVARCHAR},
+      test_case = #{testCase,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterface">
+    update api_interface
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      auth = #{auth,jdbcType=VARCHAR},
+      auth_codes = #{authCodes,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterface">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="api_id" jdbcType="VARCHAR" property="apiId" />
+    <result column="api_name" jdbcType="VARCHAR" property="apiName" />
+    <result column="target_url" jdbcType="VARCHAR" property="targetUrl" />
+    <result column="sandbox_target_url" jdbcType="VARCHAR" property="sandboxTargetUrl" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="org_id" jdbcType="VARCHAR" property="orgId" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="column_code" jdbcType="VARCHAR" property="columnCode" />
+    <result column="auth" jdbcType="VARCHAR" property="auth" />
+    <result column="auth_codes" jdbcType="VARCHAR" property="authCodes" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    <result column="api_desc" jdbcType="LONGVARCHAR" property="apiDesc" />
+    <result column="test_case" jdbcType="LONGVARCHAR" property="testCase" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, api_id, api_name, target_url, sandbox_target_url, status, del_flag, creater, 
+    create_time, updater, update_time, version, org_id, app_id, column_code, auth, auth_codes
+  </sql>
+  <sql id="Blob_Column_List">
+    api_desc, test_case
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from api_interface
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from api_interface
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample">
+    delete from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    insert into api_interface (id, api_id, api_name, 
+      target_url, sandbox_target_url, status, 
+      del_flag, creater, create_time, 
+      updater, update_time, version, 
+      org_id, app_id, column_code, 
+      auth, auth_codes, api_desc, 
+      test_case)
+    values (#{id,jdbcType=INTEGER}, #{apiId,jdbcType=VARCHAR}, #{apiName,jdbcType=VARCHAR}, 
+      #{targetUrl,jdbcType=VARCHAR}, #{sandboxTargetUrl,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{columnCode,jdbcType=VARCHAR}, 
+      #{auth,jdbcType=VARCHAR}, #{authCodes,jdbcType=VARCHAR}, #{apiDesc,jdbcType=LONGVARCHAR}, 
+      #{testCase,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    insert into api_interface
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="apiId != null">
+        api_id,
+      </if>
+      <if test="apiName != null">
+        api_name,
+      </if>
+      <if test="targetUrl != null">
+        target_url,
+      </if>
+      <if test="sandboxTargetUrl != null">
+        sandbox_target_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="columnCode != null">
+        column_code,
+      </if>
+      <if test="auth != null">
+        auth,
+      </if>
+      <if test="authCodes != null">
+        auth_codes,
+      </if>
+      <if test="apiDesc != null">
+        api_desc,
+      </if>
+      <if test="testCase != null">
+        test_case,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="apiId != null">
+        #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null">
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null">
+        #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxTargetUrl != null">
+        #{sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCode != null">
+        #{columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="authCodes != null">
+        #{authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        #{apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="testCase != null">
+        #{testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultType="java.lang.Integer">
+    select count(*) from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update api_interface
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.apiId != null">
+        api_id = #{record.apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiName != null">
+        api_name = #{record.apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetUrl != null">
+        target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sandboxTargetUrl != null">
+        sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.creater != null">
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgId != null">
+        org_id = #{record.orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.columnCode != null">
+        column_code = #{record.columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auth != null">
+        auth = #{record.auth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authCodes != null">
+        auth_codes = #{record.authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiDesc != null">
+        api_desc = #{record.apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.testCase != null">
+        test_case = #{record.testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update api_interface
+    set id = #{record.id,jdbcType=INTEGER},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=VARCHAR},
+      org_id = #{record.orgId,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      column_code = #{record.columnCode,jdbcType=VARCHAR},
+      auth = #{record.auth,jdbcType=VARCHAR},
+      auth_codes = #{record.authCodes,jdbcType=VARCHAR},
+      api_desc = #{record.apiDesc,jdbcType=LONGVARCHAR},
+      test_case = #{record.testCase,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update api_interface
+    set id = #{record.id,jdbcType=INTEGER},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=VARCHAR},
+      org_id = #{record.orgId,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      column_code = #{record.columnCode,jdbcType=VARCHAR},
+      auth = #{record.auth,jdbcType=VARCHAR},
+      auth_codes = #{record.authCodes,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    update api_interface
+    <set>
+      <if test="apiId != null">
+        api_id = #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null">
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null">
+        target_url = #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxTargetUrl != null">
+        sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCode != null">
+        column_code = #{columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        auth = #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="authCodes != null">
+        auth_codes = #{authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        api_desc = #{apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="testCase != null">
+        test_case = #{testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    update api_interface
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      auth = #{auth,jdbcType=VARCHAR},
+      auth_codes = #{authCodes,jdbcType=VARCHAR},
+      api_desc = #{apiDesc,jdbcType=LONGVARCHAR},
+      test_case = #{testCase,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterface">
+    update api_interface
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      auth = #{auth,jdbcType=VARCHAR},
+      auth_codes = #{authCodes,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterface">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="api_id" jdbcType="VARCHAR" property="apiId" />
+    <result column="api_name" jdbcType="VARCHAR" property="apiName" />
+    <result column="target_url" jdbcType="VARCHAR" property="targetUrl" />
+    <result column="sandbox_target_url" jdbcType="VARCHAR" property="sandboxTargetUrl" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="org_id" jdbcType="VARCHAR" property="orgId" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="column_code" jdbcType="VARCHAR" property="columnCode" />
+    <result column="auth" jdbcType="VARCHAR" property="auth" />
+    <result column="auth_codes" jdbcType="VARCHAR" property="authCodes" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    <result column="api_desc" jdbcType="LONGVARCHAR" property="apiDesc" />
+    <result column="test_case" jdbcType="LONGVARCHAR" property="testCase" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, api_id, api_name, target_url, sandbox_target_url, status, del_flag, creater, 
+    create_time, updater, update_time, version, org_id, app_id, column_code, auth, auth_codes
+  </sql>
+  <sql id="Blob_Column_List">
+    api_desc, test_case
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from api_interface
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from api_interface
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample">
+    delete from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    insert into api_interface (id, api_id, api_name, 
+      target_url, sandbox_target_url, status, 
+      del_flag, creater, create_time, 
+      updater, update_time, version, 
+      org_id, app_id, column_code, 
+      auth, auth_codes, api_desc, 
+      test_case)
+    values (#{id,jdbcType=INTEGER}, #{apiId,jdbcType=VARCHAR}, #{apiName,jdbcType=VARCHAR}, 
+      #{targetUrl,jdbcType=VARCHAR}, #{sandboxTargetUrl,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{columnCode,jdbcType=VARCHAR}, 
+      #{auth,jdbcType=VARCHAR}, #{authCodes,jdbcType=VARCHAR}, #{apiDesc,jdbcType=LONGVARCHAR}, 
+      #{testCase,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    insert into api_interface
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="apiId != null">
+        api_id,
+      </if>
+      <if test="apiName != null">
+        api_name,
+      </if>
+      <if test="targetUrl != null">
+        target_url,
+      </if>
+      <if test="sandboxTargetUrl != null">
+        sandbox_target_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="columnCode != null">
+        column_code,
+      </if>
+      <if test="auth != null">
+        auth,
+      </if>
+      <if test="authCodes != null">
+        auth_codes,
+      </if>
+      <if test="apiDesc != null">
+        api_desc,
+      </if>
+      <if test="testCase != null">
+        test_case,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="apiId != null">
+        #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null">
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null">
+        #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxTargetUrl != null">
+        #{sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCode != null">
+        #{columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="authCodes != null">
+        #{authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        #{apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="testCase != null">
+        #{testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultType="java.lang.Integer">
+    select count(*) from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update api_interface
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.apiId != null">
+        api_id = #{record.apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiName != null">
+        api_name = #{record.apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetUrl != null">
+        target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sandboxTargetUrl != null">
+        sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.creater != null">
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgId != null">
+        org_id = #{record.orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.columnCode != null">
+        column_code = #{record.columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auth != null">
+        auth = #{record.auth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authCodes != null">
+        auth_codes = #{record.authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiDesc != null">
+        api_desc = #{record.apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.testCase != null">
+        test_case = #{record.testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update api_interface
+    set id = #{record.id,jdbcType=INTEGER},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=VARCHAR},
+      org_id = #{record.orgId,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      column_code = #{record.columnCode,jdbcType=VARCHAR},
+      auth = #{record.auth,jdbcType=VARCHAR},
+      auth_codes = #{record.authCodes,jdbcType=VARCHAR},
+      api_desc = #{record.apiDesc,jdbcType=LONGVARCHAR},
+      test_case = #{record.testCase,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update api_interface
+    set id = #{record.id,jdbcType=INTEGER},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=VARCHAR},
+      org_id = #{record.orgId,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      column_code = #{record.columnCode,jdbcType=VARCHAR},
+      auth = #{record.auth,jdbcType=VARCHAR},
+      auth_codes = #{record.authCodes,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    update api_interface
+    <set>
+      <if test="apiId != null">
+        api_id = #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null">
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null">
+        target_url = #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxTargetUrl != null">
+        sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCode != null">
+        column_code = #{columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        auth = #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="authCodes != null">
+        auth_codes = #{authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        api_desc = #{apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="testCase != null">
+        test_case = #{testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    update api_interface
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      auth = #{auth,jdbcType=VARCHAR},
+      auth_codes = #{authCodes,jdbcType=VARCHAR},
+      api_desc = #{apiDesc,jdbcType=LONGVARCHAR},
+      test_case = #{testCase,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterface">
+    update api_interface
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      auth = #{auth,jdbcType=VARCHAR},
+      auth_codes = #{authCodes,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterface">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="api_id" jdbcType="VARCHAR" property="apiId" />
+    <result column="api_name" jdbcType="VARCHAR" property="apiName" />
+    <result column="target_url" jdbcType="VARCHAR" property="targetUrl" />
+    <result column="sandbox_target_url" jdbcType="VARCHAR" property="sandboxTargetUrl" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="org_id" jdbcType="VARCHAR" property="orgId" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="column_code" jdbcType="VARCHAR" property="columnCode" />
+    <result column="auth" jdbcType="VARCHAR" property="auth" />
+    <result column="auth_codes" jdbcType="VARCHAR" property="authCodes" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    <result column="api_desc" jdbcType="LONGVARCHAR" property="apiDesc" />
+    <result column="test_case" jdbcType="LONGVARCHAR" property="testCase" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, api_id, api_name, target_url, sandbox_target_url, status, del_flag, creater, 
+    create_time, updater, update_time, version, org_id, app_id, column_code, auth, auth_codes
+  </sql>
+  <sql id="Blob_Column_List">
+    api_desc, test_case
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from api_interface
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from api_interface
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample">
+    delete from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    insert into api_interface (id, api_id, api_name, 
+      target_url, sandbox_target_url, status, 
+      del_flag, creater, create_time, 
+      updater, update_time, version, 
+      org_id, app_id, column_code, 
+      auth, auth_codes, api_desc, 
+      test_case)
+    values (#{id,jdbcType=INTEGER}, #{apiId,jdbcType=VARCHAR}, #{apiName,jdbcType=VARCHAR}, 
+      #{targetUrl,jdbcType=VARCHAR}, #{sandboxTargetUrl,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{columnCode,jdbcType=VARCHAR}, 
+      #{auth,jdbcType=VARCHAR}, #{authCodes,jdbcType=VARCHAR}, #{apiDesc,jdbcType=LONGVARCHAR}, 
+      #{testCase,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    insert into api_interface
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="apiId != null">
+        api_id,
+      </if>
+      <if test="apiName != null">
+        api_name,
+      </if>
+      <if test="targetUrl != null">
+        target_url,
+      </if>
+      <if test="sandboxTargetUrl != null">
+        sandbox_target_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="columnCode != null">
+        column_code,
+      </if>
+      <if test="auth != null">
+        auth,
+      </if>
+      <if test="authCodes != null">
+        auth_codes,
+      </if>
+      <if test="apiDesc != null">
+        api_desc,
+      </if>
+      <if test="testCase != null">
+        test_case,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="apiId != null">
+        #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null">
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null">
+        #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxTargetUrl != null">
+        #{sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCode != null">
+        #{columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="authCodes != null">
+        #{authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        #{apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="testCase != null">
+        #{testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceExample" resultType="java.lang.Integer">
+    select count(*) from api_interface
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update api_interface
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.apiId != null">
+        api_id = #{record.apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiName != null">
+        api_name = #{record.apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetUrl != null">
+        target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sandboxTargetUrl != null">
+        sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.creater != null">
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgId != null">
+        org_id = #{record.orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.columnCode != null">
+        column_code = #{record.columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auth != null">
+        auth = #{record.auth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authCodes != null">
+        auth_codes = #{record.authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiDesc != null">
+        api_desc = #{record.apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.testCase != null">
+        test_case = #{record.testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update api_interface
+    set id = #{record.id,jdbcType=INTEGER},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=VARCHAR},
+      org_id = #{record.orgId,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      column_code = #{record.columnCode,jdbcType=VARCHAR},
+      auth = #{record.auth,jdbcType=VARCHAR},
+      auth_codes = #{record.authCodes,jdbcType=VARCHAR},
+      api_desc = #{record.apiDesc,jdbcType=LONGVARCHAR},
+      test_case = #{record.testCase,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update api_interface
+    set id = #{record.id,jdbcType=INTEGER},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      target_url = #{record.targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{record.sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=VARCHAR},
+      org_id = #{record.orgId,jdbcType=VARCHAR},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      column_code = #{record.columnCode,jdbcType=VARCHAR},
+      auth = #{record.auth,jdbcType=VARCHAR},
+      auth_codes = #{record.authCodes,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    update api_interface
+    <set>
+      <if test="apiId != null">
+        api_id = #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null">
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null">
+        target_url = #{targetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandboxTargetUrl != null">
+        sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCode != null">
+        column_code = #{columnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        auth = #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="authCodes != null">
+        auth_codes = #{authCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        api_desc = #{apiDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="testCase != null">
+        test_case = #{testCase,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterfaceWithBLOBs">
+    update api_interface
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      auth = #{auth,jdbcType=VARCHAR},
+      auth_codes = #{authCodes,jdbcType=VARCHAR},
+      api_desc = #{apiDesc,jdbcType=LONGVARCHAR},
+      test_case = #{testCase,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.openapi.modules.apiinterface.domain.entity1.ApiInterface">
+    update api_interface
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR},
+      sandbox_target_url = #{sandboxTargetUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      auth = #{auth,jdbcType=VARCHAR},
+      auth_codes = #{authCodes,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
