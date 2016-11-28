@@ -17,10 +17,10 @@ public class QnloftCommentGenerator extends DefaultCommentGenerator {
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
         // 添加字段注释
         //StringBuffer sb = new StringBuffer();
-        field.addJavaDocLine("/**");
+      //  field.addJavaDocLine("/**");
         //field.addJavaDocLine(" * <pre>");
         if (introspectedColumn.getRemarks() != null)
-            field.addJavaDocLine(" * " + introspectedColumn.getRemarks());
+      //      field.addJavaDocLine(" * " + introspectedColumn.getRemarks());
         //sb.append(" * 表字段 : ");
         //sb.append(introspectedTable.getFullyQualifiedTable());
         //sb.append('.');
@@ -29,7 +29,7 @@ public class QnloftCommentGenerator extends DefaultCommentGenerator {
         //field.addJavaDocLine(" * </pre>");
         //field.addJavaDocLine(" * ");
          //addJavadocTag(field, false);
-        field.addJavaDocLine(" */");
+      //		 field.addJavaDocLine(" */");
         
         //方式2
         field.addJavaDocLine("// "+ introspectedColumn.getRemarks());
