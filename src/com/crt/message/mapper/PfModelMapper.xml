@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crt.message.mapper.PfModelMapper">
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.PfModel">
+    <id column="pfModel_id" jdbcType="BIGINT" property="id" />
+    <result column="pfModel_code" jdbcType="VARCHAR" property="code" />
+    <result column="pfModel_template_name" jdbcType="VARCHAR" property="templateName" />
+    <result column="pfModel_context" jdbcType="VARCHAR" property="context" />
+    <result column="pfModel_templat_type" jdbcType="VARCHAR" property="templatType" />
+    <result column="pfModel_send_method" jdbcType="VARCHAR" property="sendMethod" />
+    <result column="pfModel_status" jdbcType="VARCHAR" property="status" />
+    <result column="pfModel_remark" jdbcType="VARCHAR" property="remark" />
+    <result column="pfModel_sort" jdbcType="INTEGER" property="sort" />
+    <result column="pfModel_check_by" jdbcType="VARCHAR" property="checkBy" />
+    <result column="pfModel_del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="pfModel_create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="pfModel_update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="pfModel_create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="pfModel_update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pfModel.id as pfModel_id, pfModel.code as pfModel_code, pfModel.template_name as pfModel_template_name, 
+    pfModel.context as pfModel_context, pfModel.templat_type as pfModel_templat_type, 
+    pfModel.send_method as pfModel_send_method, pfModel.status as pfModel_status, pfModel.remark as pfModel_remark, 
+    pfModel.sort as pfModel_sort, pfModel.check_by as pfModel_check_by, pfModel.del_flag as pfModel_del_flag, 
+    pfModel.create_by as pfModel_create_by, pfModel.update_by as pfModel_update_by, pfModel.create_date as pfModel_create_date, 
+    pfModel.update_date as pfModel_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_pf_model pfModel
+    where pfModel.id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelKey">
+    delete from t_pf_model
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.PfModel">
+    insert into t_pf_model (id, code, template_name, 
+      context, templat_type, send_method, 
+      status, remark, sort, 
+      check_by, del_flag, create_by, 
+      update_by, create_date, update_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{templateName,jdbcType=VARCHAR}, 
+      #{context,jdbcType=VARCHAR}, #{templatType,jdbcType=VARCHAR}, #{sendMethod,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{checkBy,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.PfModel">
+    insert into t_pf_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="templateName != null">
+        template_name,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+      <if test="templatType != null">
+        templat_type,
+      </if>
+      <if test="sendMethod != null">
+        send_method,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="checkBy != null">
+        check_by,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="templateName != null">
+        #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="templatType != null">
+        #{templatType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMethod != null">
+        #{sendMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="checkBy != null">
+        #{checkBy,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.message.domain.entity.PfModel">
+    update t_pf_model
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="templateName != null">
+        template_name = #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="templatType != null">
+        templat_type = #{templatType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMethod != null">
+        send_method = #{sendMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="checkBy != null">
+        check_by = #{checkBy,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModel">
+    update t_pf_model
+    set code = #{code,jdbcType=VARCHAR},
+      template_name = #{templateName,jdbcType=VARCHAR},
+      context = #{context,jdbcType=VARCHAR},
+      templat_type = #{templatType,jdbcType=VARCHAR},
+      send_method = #{sendMethod,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      check_by = #{checkBy,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.PfModel">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="template_name" jdbcType="VARCHAR" property="templateName" />
+    <result column="context" jdbcType="VARCHAR" property="context" />
+    <result column="templat_type" jdbcType="VARCHAR" property="templatType" />
+    <result column="send_method" jdbcType="VARCHAR" property="sendMethod" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="check_by" jdbcType="VARCHAR" property="checkBy" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, template_name, context, templat_type, send_method, status, remark, sort, 
+    check_by, del_flag, create_by, update_by, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_pf_model
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelKey">
+    delete from t_pf_model
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.PfModel">
+    insert into t_pf_model (id, code, template_name, 
+      context, templat_type, send_method, 
+      status, remark, sort, 
+      check_by, del_flag, create_by, 
+      update_by, create_date, update_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{templateName,jdbcType=VARCHAR}, 
+      #{context,jdbcType=VARCHAR}, #{templatType,jdbcType=VARCHAR}, #{sendMethod,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{checkBy,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.PfModel">
+    insert into t_pf_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="templateName != null">
+        template_name,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+      <if test="templatType != null">
+        templat_type,
+      </if>
+      <if test="sendMethod != null">
+        send_method,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="checkBy != null">
+        check_by,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="templateName != null">
+        #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="templatType != null">
+        #{templatType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMethod != null">
+        #{sendMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="checkBy != null">
+        #{checkBy,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.message.domain.entity.PfModel">
+    update t_pf_model
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="templateName != null">
+        template_name = #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="templatType != null">
+        templat_type = #{templatType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMethod != null">
+        send_method = #{sendMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="checkBy != null">
+        check_by = #{checkBy,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModel">
+    update t_pf_model
+    set code = #{code,jdbcType=VARCHAR},
+      template_name = #{templateName,jdbcType=VARCHAR},
+      context = #{context,jdbcType=VARCHAR},
+      templat_type = #{templatType,jdbcType=VARCHAR},
+      send_method = #{sendMethod,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      check_by = #{checkBy,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.PfModel">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="template_name" jdbcType="VARCHAR" property="templateName" />
+    <result column="context" jdbcType="VARCHAR" property="context" />
+    <result column="templat_type" jdbcType="VARCHAR" property="templatType" />
+    <result column="send_method" jdbcType="VARCHAR" property="sendMethod" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="check_by" jdbcType="VARCHAR" property="checkBy" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.PfModel">
+    insert into t_pf_model (id, code, template_name, 
+      context, templat_type, send_method, 
+      status, remark, sort, 
+      check_by, del_flag, create_by, 
+      update_by, create_date, update_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{templateName,jdbcType=VARCHAR}, 
+      #{context,jdbcType=VARCHAR}, #{templatType,jdbcType=VARCHAR}, #{sendMethod,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{checkBy,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.PfModel">
+    insert into t_pf_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="templateName != null">
+        template_name,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+      <if test="templatType != null">
+        templat_type,
+      </if>
+      <if test="sendMethod != null">
+        send_method,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="checkBy != null">
+        check_by,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="templateName != null">
+        #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="templatType != null">
+        #{templatType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMethod != null">
+        #{sendMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="checkBy != null">
+        #{checkBy,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.PfModel">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="template_name" jdbcType="VARCHAR" property="templateName" />
+    <result column="context" jdbcType="VARCHAR" property="context" />
+    <result column="templat_type" jdbcType="VARCHAR" property="templatType" />
+    <result column="send_method" jdbcType="VARCHAR" property="sendMethod" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="check_by" jdbcType="VARCHAR" property="checkBy" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.PfModel">
+    insert into t_pf_model (id, code, template_name, 
+      context, templat_type, send_method, 
+      status, remark, sort, 
+      check_by, del_flag, create_by, 
+      update_by, create_date, update_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{templateName,jdbcType=VARCHAR}, 
+      #{context,jdbcType=VARCHAR}, #{templatType,jdbcType=VARCHAR}, #{sendMethod,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{checkBy,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.PfModel">
+    insert into t_pf_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="templateName != null">
+        template_name,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+      <if test="templatType != null">
+        templat_type,
+      </if>
+      <if test="sendMethod != null">
+        send_method,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="checkBy != null">
+        check_by,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="templateName != null">
+        #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="templatType != null">
+        #{templatType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMethod != null">
+        #{sendMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="checkBy != null">
+        #{checkBy,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

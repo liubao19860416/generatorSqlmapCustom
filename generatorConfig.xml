@@ -33,19 +33,19 @@
 		</javaTypeResolver>
 
 		<!-- targetProject:生成PO类的位置 -->
-		<javaModelGenerator targetPackage="com.crt.message.domain.entity" targetProject=".\src">
+		<javaModelGenerator targetPackage="com.crt.message.domain.entity3" targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 			<!-- 从数据库返回的值被清理前后的空格 -->
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
         <!-- targetProject:mapper映射文件生成的位置 -->
-		<sqlMapGenerator targetPackage="com.crt.message.mapper"  targetProject=".\src">
+		<sqlMapGenerator targetPackage="com.crt.message.mapper3"  targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 		<!-- targetPackage：mapper接口生成的位置 -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.crt.message.mapper"  targetProject=".\src">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.crt.message.mapper3"  targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
@@ -63,7 +63,21 @@
 		<table schema="" tableName="sys_permission"></table>
 		<table schema="" tableName="sys_user_role"></table>
 		<table schema="" tableName="sys_role_permission"></table> -->
-		<table tableName="t_member_mapping"  alias="memberMapping"  domainObjectName="MemberMapping"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" >
+		
+		<table tableName="t_rsa_opt_history_copy" domainObjectName="RsaOptHistory"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" >
+		</table>
+		<!-- <table tableName="t_rsa_key_copy"  domainObjectName="RsaKey"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" >
+			<property name="useActualColumnNames" value="false"/>
+    		<columnRenamingRule searchString="^T" replaceString=""/> 
+			<ignoreColumn column="id"  javaType="java.lang.Long"/>
+			<ignoreColumn column="code" javaType="java.lang.String"/>
+			<ignoreColumn column="del_flag"  javaType="java.lang.Boolean"/>
+			<ignoreColumn column="update_by" javaType="java.lang.String"/>
+			<ignoreColumn column="create_date" javaType="java.util.Date"/>
+			<ignoreColumn column="update_date"  javaType="java.util.Date"/>
+		</table> -->
+		
+		<!-- <table tableName="t_member_mapping"  alias="memberMapping"  domainObjectName="MemberMapping"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" >
 		</table>
 		<table tableName="t_msg_email" alias="msgEmail"   domainObjectName="MsgEmail"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" >
 		</table>
@@ -82,23 +96,23 @@
 		<table tableName="t_switch_channel_adm"  alias="switchChannelAdm"  domainObjectName="SwitchChannelAdm"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" >
 		</table>
 		<table tableName="t_sys_dict"  alias="sysDict"  domainObjectName="SysDict"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" >
-			<!-- 去除字段前缀信息 -->
+			去除字段前缀信息
 			<property name="useActualColumnNames" value="false"/>
     		<columnRenamingRule searchString="^T" replaceString=""/> 
-    		<!-- 忽略列，不生成bean 字段 -->  
-            <!-- <ignoreColumn column="id" />
+    		忽略列，不生成bean 字段  
+            <ignoreColumn column="id" />
             <ignoreColumn column="code" />
             <ignoreColumn column="del_flag" />
             <ignoreColumn column="create_by" />
             <ignoreColumn column="update_by" />
             <ignoreColumn column="create_date" />
-            <ignoreColumn column="update_date" /> -->
-            <!-- 
+            <ignoreColumn column="update_date" />
+            
             <ignoreColumnsByRegex pattern="*_by" />
             <ignoreColumnsByRegex pattern="*_date" /> 
-            -->
-			<!-- <columnOverride column="remark" property="remark" javaType="java.lang.String"/> -->
-		</table>
+           
+			<columnOverride column="remark" property="remark" javaType="java.lang.String"/>
+		</table> -->
 		
 		<!-- <table tableName="t_base_entity"  domainObjectName="BaseEntity"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" 
 		enableUpdateByExample="false"  enableDeleteByPrimaryKey="false"  enableSelectByPrimaryKey="false" enableUpdateByPrimaryKey="false" >

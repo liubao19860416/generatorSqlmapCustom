@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crt.message.mapper.PfModelUrlMapper">
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.PfModelUrl">
+    <id column="pfModelUrl_id" jdbcType="BIGINT" property="id" />
+    <result column="pfModelUrl_code" jdbcType="VARCHAR" property="code" />
+    <result column="pfModelUrl_pf_model_code" jdbcType="VARCHAR" property="pfModelCode" />
+    <result column="pfModelUrl_applicable_scope" jdbcType="VARCHAR" property="applicableScope" />
+    <result column="pfModelUrl_href_url" jdbcType="VARCHAR" property="hrefUrl" />
+    <result column="pfModelUrl_ico_url" jdbcType="VARCHAR" property="icoUrl" />
+    <result column="pfModelUrl_del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="pfModelUrl_create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="pfModelUrl_update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="pfModelUrl_create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="pfModelUrl_update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pfModelUrl.id as pfModelUrl_id, pfModelUrl.code as pfModelUrl_code, pfModelUrl.pf_model_code as pfModelUrl_pf_model_code, 
+    pfModelUrl.applicable_scope as pfModelUrl_applicable_scope, pfModelUrl.href_url as pfModelUrl_href_url, 
+    pfModelUrl.ico_url as pfModelUrl_ico_url, pfModelUrl.del_flag as pfModelUrl_del_flag, 
+    pfModelUrl.create_by as pfModelUrl_create_by, pfModelUrl.update_by as pfModelUrl_update_by, 
+    pfModelUrl.create_date as pfModelUrl_create_date, pfModelUrl.update_date as pfModelUrl_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelUrlKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_pf_model_url pfModelUrl
+    where pfModelUrl.id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelUrlKey">
+    delete from t_pf_model_url
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    insert into t_pf_model_url (id, code, pf_model_code, 
+      applicable_scope, href_url, ico_url, 
+      del_flag, create_by, update_by, 
+      create_date, update_date)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{pfModelCode,jdbcType=VARCHAR}, 
+      #{applicableScope,jdbcType=VARCHAR}, #{hrefUrl,jdbcType=VARCHAR}, #{icoUrl,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    insert into t_pf_model_url
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code,
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope,
+      </if>
+      <if test="hrefUrl != null">
+        href_url,
+      </if>
+      <if test="icoUrl != null">
+        ico_url,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="hrefUrl != null">
+        #{hrefUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icoUrl != null">
+        #{icoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    update t_pf_model_url
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code = #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope = #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="hrefUrl != null">
+        href_url = #{hrefUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icoUrl != null">
+        ico_url = #{icoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    update t_pf_model_url
+    set code = #{code,jdbcType=VARCHAR},
+      pf_model_code = #{pfModelCode,jdbcType=VARCHAR},
+      applicable_scope = #{applicableScope,jdbcType=VARCHAR},
+      href_url = #{hrefUrl,jdbcType=VARCHAR},
+      ico_url = #{icoUrl,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.PfModelUrl">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="pf_model_code" jdbcType="VARCHAR" property="pfModelCode" />
+    <result column="applicable_scope" jdbcType="VARCHAR" property="applicableScope" />
+    <result column="href_url" jdbcType="VARCHAR" property="hrefUrl" />
+    <result column="ico_url" jdbcType="VARCHAR" property="icoUrl" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, pf_model_code, applicable_scope, href_url, ico_url, del_flag, create_by, 
+    update_by, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelUrlKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_pf_model_url
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelUrlKey">
+    delete from t_pf_model_url
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    insert into t_pf_model_url (id, code, pf_model_code, 
+      applicable_scope, href_url, ico_url, 
+      del_flag, create_by, update_by, 
+      create_date, update_date)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{pfModelCode,jdbcType=VARCHAR}, 
+      #{applicableScope,jdbcType=VARCHAR}, #{hrefUrl,jdbcType=VARCHAR}, #{icoUrl,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    insert into t_pf_model_url
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code,
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope,
+      </if>
+      <if test="hrefUrl != null">
+        href_url,
+      </if>
+      <if test="icoUrl != null">
+        ico_url,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="hrefUrl != null">
+        #{hrefUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icoUrl != null">
+        #{icoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    update t_pf_model_url
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code = #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope = #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="hrefUrl != null">
+        href_url = #{hrefUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icoUrl != null">
+        ico_url = #{icoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    update t_pf_model_url
+    set code = #{code,jdbcType=VARCHAR},
+      pf_model_code = #{pfModelCode,jdbcType=VARCHAR},
+      applicable_scope = #{applicableScope,jdbcType=VARCHAR},
+      href_url = #{hrefUrl,jdbcType=VARCHAR},
+      ico_url = #{icoUrl,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.PfModelUrl">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="pf_model_code" jdbcType="VARCHAR" property="pfModelCode" />
+    <result column="applicable_scope" jdbcType="VARCHAR" property="applicableScope" />
+    <result column="href_url" jdbcType="VARCHAR" property="hrefUrl" />
+    <result column="ico_url" jdbcType="VARCHAR" property="icoUrl" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    insert into t_pf_model_url (id, code, pf_model_code, 
+      applicable_scope, href_url, ico_url, 
+      del_flag, create_by, update_by, 
+      create_date, update_date)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{pfModelCode,jdbcType=VARCHAR}, 
+      #{applicableScope,jdbcType=VARCHAR}, #{hrefUrl,jdbcType=VARCHAR}, #{icoUrl,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    insert into t_pf_model_url
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code,
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope,
+      </if>
+      <if test="hrefUrl != null">
+        href_url,
+      </if>
+      <if test="icoUrl != null">
+        ico_url,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="hrefUrl != null">
+        #{hrefUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icoUrl != null">
+        #{icoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.PfModelUrl">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="pf_model_code" jdbcType="VARCHAR" property="pfModelCode" />
+    <result column="applicable_scope" jdbcType="VARCHAR" property="applicableScope" />
+    <result column="href_url" jdbcType="VARCHAR" property="hrefUrl" />
+    <result column="ico_url" jdbcType="VARCHAR" property="icoUrl" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    insert into t_pf_model_url (id, code, pf_model_code, 
+      applicable_scope, href_url, ico_url, 
+      del_flag, create_by, update_by, 
+      create_date, update_date)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{pfModelCode,jdbcType=VARCHAR}, 
+      #{applicableScope,jdbcType=VARCHAR}, #{hrefUrl,jdbcType=VARCHAR}, #{icoUrl,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.PfModelUrl">
+    insert into t_pf_model_url
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code,
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope,
+      </if>
+      <if test="hrefUrl != null">
+        href_url,
+      </if>
+      <if test="icoUrl != null">
+        ico_url,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="hrefUrl != null">
+        #{hrefUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icoUrl != null">
+        #{icoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

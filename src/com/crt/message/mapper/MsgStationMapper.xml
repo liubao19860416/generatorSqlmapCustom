@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crt.message.mapper.MsgStationMapper">
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.MsgStation">
+    <id column="msgStation_id" jdbcType="BIGINT" property="id" />
+    <result column="msgStation_code" jdbcType="VARCHAR" property="code" />
+    <result column="msgStation_recipient_no" jdbcType="VARCHAR" property="recipientNo" />
+    <result column="msgStation_recipient_name" jdbcType="VARCHAR" property="recipientName" />
+    <result column="msgStation_title" jdbcType="VARCHAR" property="title" />
+    <result column="msgStation_content" jdbcType="VARCHAR" property="content" />
+    <result column="msgStation_send_chnannel" jdbcType="VARCHAR" property="sendChnannel" />
+    <result column="msgStation_business_id" jdbcType="VARCHAR" property="businessId" />
+    <result column="msgStation_pf_model_code" jdbcType="VARCHAR" property="pfModelCode" />
+    <result column="msgStation_applicable_scope" jdbcType="VARCHAR" property="applicableScope" />
+    <result column="msgStation_push_type" jdbcType="VARCHAR" property="pushType" />
+    <result column="msgStation_msg_id" jdbcType="VARCHAR" property="msgId" />
+    <result column="msgStation_status" jdbcType="VARCHAR" property="status" />
+    <result column="msgStation_read_time" jdbcType="TIMESTAMP" property="readTime" />
+    <result column="msgStation_err_code" jdbcType="VARCHAR" property="errCode" />
+    <result column="msgStation_err_msg" jdbcType="VARCHAR" property="errMsg" />
+    <result column="msgStation_del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="msgStation_create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="msgStation_update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="msgStation_create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="msgStation_update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    msgStation.id as msgStation_id, msgStation.code as msgStation_code, msgStation.recipient_no as msgStation_recipient_no, 
+    msgStation.recipient_name as msgStation_recipient_name, msgStation.title as msgStation_title, 
+    msgStation.content as msgStation_content, msgStation.send_chnannel as msgStation_send_chnannel, 
+    msgStation.business_id as msgStation_business_id, msgStation.pf_model_code as msgStation_pf_model_code, 
+    msgStation.applicable_scope as msgStation_applicable_scope, msgStation.push_type as msgStation_push_type, 
+    msgStation.msg_id as msgStation_msg_id, msgStation.status as msgStation_status, msgStation.read_time as msgStation_read_time, 
+    msgStation.err_code as msgStation_err_code, msgStation.err_msg as msgStation_err_msg, 
+    msgStation.del_flag as msgStation_del_flag, msgStation.create_by as msgStation_create_by, 
+    msgStation.update_by as msgStation_update_by, msgStation.create_date as msgStation_create_date, 
+    msgStation.update_date as msgStation_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.crt.message.domain.entity.MsgStationKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg_station msgStation
+    where msgStation.id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.crt.message.domain.entity.MsgStationKey">
+    delete from t_msg_station
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.MsgStation">
+    insert into t_msg_station (id, code, recipient_no, 
+      recipient_name, title, content, 
+      send_chnannel, business_id, pf_model_code, 
+      applicable_scope, push_type, msg_id, 
+      status, read_time, err_code, 
+      err_msg, del_flag, create_by, 
+      update_by, create_date, update_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{recipientNo,jdbcType=VARCHAR}, 
+      #{recipientName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{sendChnannel,jdbcType=VARCHAR}, #{businessId,jdbcType=VARCHAR}, #{pfModelCode,jdbcType=VARCHAR}, 
+      #{applicableScope,jdbcType=VARCHAR}, #{pushType,jdbcType=VARCHAR}, #{msgId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{readTime,jdbcType=TIMESTAMP}, #{errCode,jdbcType=VARCHAR}, 
+      #{errMsg,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.MsgStation">
+    insert into t_msg_station
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="recipientNo != null">
+        recipient_no,
+      </if>
+      <if test="recipientName != null">
+        recipient_name,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="sendChnannel != null">
+        send_chnannel,
+      </if>
+      <if test="businessId != null">
+        business_id,
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code,
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope,
+      </if>
+      <if test="pushType != null">
+        push_type,
+      </if>
+      <if test="msgId != null">
+        msg_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="readTime != null">
+        read_time,
+      </if>
+      <if test="errCode != null">
+        err_code,
+      </if>
+      <if test="errMsg != null">
+        err_msg,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientNo != null">
+        #{recipientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientName != null">
+        #{recipientName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendChnannel != null">
+        #{sendChnannel,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        #{pushType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null">
+        #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.message.domain.entity.MsgStation">
+    update t_msg_station
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientNo != null">
+        recipient_no = #{recipientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientName != null">
+        recipient_name = #{recipientName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendChnannel != null">
+        send_chnannel = #{sendChnannel,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        business_id = #{businessId,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code = #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope = #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        push_type = #{pushType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        msg_id = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        read_time = #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errCode != null">
+        err_code = #{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null">
+        err_msg = #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.message.domain.entity.MsgStation">
+    update t_msg_station
+    set code = #{code,jdbcType=VARCHAR},
+      recipient_no = #{recipientNo,jdbcType=VARCHAR},
+      recipient_name = #{recipientName,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      send_chnannel = #{sendChnannel,jdbcType=VARCHAR},
+      business_id = #{businessId,jdbcType=VARCHAR},
+      pf_model_code = #{pfModelCode,jdbcType=VARCHAR},
+      applicable_scope = #{applicableScope,jdbcType=VARCHAR},
+      push_type = #{pushType,jdbcType=VARCHAR},
+      msg_id = #{msgId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      read_time = #{readTime,jdbcType=TIMESTAMP},
+      err_code = #{errCode,jdbcType=VARCHAR},
+      err_msg = #{errMsg,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.MsgStation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="recipient_no" jdbcType="VARCHAR" property="recipientNo" />
+    <result column="recipient_name" jdbcType="VARCHAR" property="recipientName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="send_chnannel" jdbcType="VARCHAR" property="sendChnannel" />
+    <result column="business_id" jdbcType="VARCHAR" property="businessId" />
+    <result column="pf_model_code" jdbcType="VARCHAR" property="pfModelCode" />
+    <result column="applicable_scope" jdbcType="VARCHAR" property="applicableScope" />
+    <result column="push_type" jdbcType="VARCHAR" property="pushType" />
+    <result column="msg_id" jdbcType="VARCHAR" property="msgId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="read_time" jdbcType="TIMESTAMP" property="readTime" />
+    <result column="err_code" jdbcType="VARCHAR" property="errCode" />
+    <result column="err_msg" jdbcType="VARCHAR" property="errMsg" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, recipient_no, recipient_name, title, content, send_chnannel, business_id, 
+    pf_model_code, applicable_scope, push_type, msg_id, status, read_time, err_code, 
+    err_msg, del_flag, create_by, update_by, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.crt.message.domain.entity.MsgStationKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg_station
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.crt.message.domain.entity.MsgStationKey">
+    delete from t_msg_station
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.MsgStation">
+    insert into t_msg_station (id, code, recipient_no, 
+      recipient_name, title, content, 
+      send_chnannel, business_id, pf_model_code, 
+      applicable_scope, push_type, msg_id, 
+      status, read_time, err_code, 
+      err_msg, del_flag, create_by, 
+      update_by, create_date, update_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{recipientNo,jdbcType=VARCHAR}, 
+      #{recipientName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{sendChnannel,jdbcType=VARCHAR}, #{businessId,jdbcType=VARCHAR}, #{pfModelCode,jdbcType=VARCHAR}, 
+      #{applicableScope,jdbcType=VARCHAR}, #{pushType,jdbcType=VARCHAR}, #{msgId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{readTime,jdbcType=TIMESTAMP}, #{errCode,jdbcType=VARCHAR}, 
+      #{errMsg,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.MsgStation">
+    insert into t_msg_station
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="recipientNo != null">
+        recipient_no,
+      </if>
+      <if test="recipientName != null">
+        recipient_name,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="sendChnannel != null">
+        send_chnannel,
+      </if>
+      <if test="businessId != null">
+        business_id,
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code,
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope,
+      </if>
+      <if test="pushType != null">
+        push_type,
+      </if>
+      <if test="msgId != null">
+        msg_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="readTime != null">
+        read_time,
+      </if>
+      <if test="errCode != null">
+        err_code,
+      </if>
+      <if test="errMsg != null">
+        err_msg,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientNo != null">
+        #{recipientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientName != null">
+        #{recipientName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendChnannel != null">
+        #{sendChnannel,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        #{pushType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null">
+        #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.message.domain.entity.MsgStation">
+    update t_msg_station
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientNo != null">
+        recipient_no = #{recipientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientName != null">
+        recipient_name = #{recipientName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendChnannel != null">
+        send_chnannel = #{sendChnannel,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        business_id = #{businessId,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code = #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope = #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        push_type = #{pushType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        msg_id = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        read_time = #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errCode != null">
+        err_code = #{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null">
+        err_msg = #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.message.domain.entity.MsgStation">
+    update t_msg_station
+    set code = #{code,jdbcType=VARCHAR},
+      recipient_no = #{recipientNo,jdbcType=VARCHAR},
+      recipient_name = #{recipientName,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      send_chnannel = #{sendChnannel,jdbcType=VARCHAR},
+      business_id = #{businessId,jdbcType=VARCHAR},
+      pf_model_code = #{pfModelCode,jdbcType=VARCHAR},
+      applicable_scope = #{applicableScope,jdbcType=VARCHAR},
+      push_type = #{pushType,jdbcType=VARCHAR},
+      msg_id = #{msgId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      read_time = #{readTime,jdbcType=TIMESTAMP},
+      err_code = #{errCode,jdbcType=VARCHAR},
+      err_msg = #{errMsg,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.MsgStation">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="recipient_no" jdbcType="VARCHAR" property="recipientNo" />
+    <result column="recipient_name" jdbcType="VARCHAR" property="recipientName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="send_chnannel" jdbcType="VARCHAR" property="sendChnannel" />
+    <result column="business_id" jdbcType="VARCHAR" property="businessId" />
+    <result column="pf_model_code" jdbcType="VARCHAR" property="pfModelCode" />
+    <result column="applicable_scope" jdbcType="VARCHAR" property="applicableScope" />
+    <result column="push_type" jdbcType="VARCHAR" property="pushType" />
+    <result column="msg_id" jdbcType="VARCHAR" property="msgId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="read_time" jdbcType="TIMESTAMP" property="readTime" />
+    <result column="err_code" jdbcType="VARCHAR" property="errCode" />
+    <result column="err_msg" jdbcType="VARCHAR" property="errMsg" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.MsgStation">
+    insert into t_msg_station (id, code, recipient_no, 
+      recipient_name, title, content, 
+      send_chnannel, business_id, pf_model_code, 
+      applicable_scope, push_type, msg_id, 
+      status, read_time, err_code, 
+      err_msg, del_flag, create_by, 
+      update_by, create_date, update_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{recipientNo,jdbcType=VARCHAR}, 
+      #{recipientName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{sendChnannel,jdbcType=VARCHAR}, #{businessId,jdbcType=VARCHAR}, #{pfModelCode,jdbcType=VARCHAR}, 
+      #{applicableScope,jdbcType=VARCHAR}, #{pushType,jdbcType=VARCHAR}, #{msgId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{readTime,jdbcType=TIMESTAMP}, #{errCode,jdbcType=VARCHAR}, 
+      #{errMsg,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.MsgStation">
+    insert into t_msg_station
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="recipientNo != null">
+        recipient_no,
+      </if>
+      <if test="recipientName != null">
+        recipient_name,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="sendChnannel != null">
+        send_chnannel,
+      </if>
+      <if test="businessId != null">
+        business_id,
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code,
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope,
+      </if>
+      <if test="pushType != null">
+        push_type,
+      </if>
+      <if test="msgId != null">
+        msg_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="readTime != null">
+        read_time,
+      </if>
+      <if test="errCode != null">
+        err_code,
+      </if>
+      <if test="errMsg != null">
+        err_msg,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientNo != null">
+        #{recipientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientName != null">
+        #{recipientName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendChnannel != null">
+        #{sendChnannel,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        #{pushType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null">
+        #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.MsgStation">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="recipient_no" jdbcType="VARCHAR" property="recipientNo" />
+    <result column="recipient_name" jdbcType="VARCHAR" property="recipientName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="send_chnannel" jdbcType="VARCHAR" property="sendChnannel" />
+    <result column="business_id" jdbcType="VARCHAR" property="businessId" />
+    <result column="pf_model_code" jdbcType="VARCHAR" property="pfModelCode" />
+    <result column="applicable_scope" jdbcType="VARCHAR" property="applicableScope" />
+    <result column="push_type" jdbcType="VARCHAR" property="pushType" />
+    <result column="msg_id" jdbcType="VARCHAR" property="msgId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="read_time" jdbcType="TIMESTAMP" property="readTime" />
+    <result column="err_code" jdbcType="VARCHAR" property="errCode" />
+    <result column="err_msg" jdbcType="VARCHAR" property="errMsg" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.MsgStation">
+    insert into t_msg_station (id, code, recipient_no, 
+      recipient_name, title, content, 
+      send_chnannel, business_id, pf_model_code, 
+      applicable_scope, push_type, msg_id, 
+      status, read_time, err_code, 
+      err_msg, del_flag, create_by, 
+      update_by, create_date, update_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{recipientNo,jdbcType=VARCHAR}, 
+      #{recipientName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{sendChnannel,jdbcType=VARCHAR}, #{businessId,jdbcType=VARCHAR}, #{pfModelCode,jdbcType=VARCHAR}, 
+      #{applicableScope,jdbcType=VARCHAR}, #{pushType,jdbcType=VARCHAR}, #{msgId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{readTime,jdbcType=TIMESTAMP}, #{errCode,jdbcType=VARCHAR}, 
+      #{errMsg,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.MsgStation">
+    insert into t_msg_station
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="recipientNo != null">
+        recipient_no,
+      </if>
+      <if test="recipientName != null">
+        recipient_name,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="sendChnannel != null">
+        send_chnannel,
+      </if>
+      <if test="businessId != null">
+        business_id,
+      </if>
+      <if test="pfModelCode != null">
+        pf_model_code,
+      </if>
+      <if test="applicableScope != null">
+        applicable_scope,
+      </if>
+      <if test="pushType != null">
+        push_type,
+      </if>
+      <if test="msgId != null">
+        msg_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="readTime != null">
+        read_time,
+      </if>
+      <if test="errCode != null">
+        err_code,
+      </if>
+      <if test="errMsg != null">
+        err_msg,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientNo != null">
+        #{recipientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientName != null">
+        #{recipientName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendChnannel != null">
+        #{sendChnannel,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=VARCHAR},
+      </if>
+      <if test="pfModelCode != null">
+        #{pfModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableScope != null">
+        #{applicableScope,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        #{pushType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null">
+        #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crt.message.mapper3.RsaOptHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity3.RsaOptHistory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_token" property="appToken" jdbcType="VARCHAR" />
+    <result column="original_data" property="originalData" jdbcType="VARCHAR" />
+    <result column="rsa_sign" property="rsaSign" jdbcType="VARCHAR" />
+    <result column="opt_type" property="optType" jdbcType="INTEGER" />
+    <result column="used_time" property="usedTime" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="experied_date" property="experiedDate" jdbcType="TIMESTAMP" />
+    <result column="rsa_key" property="rsaKey" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="BIT" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_token, original_data, rsa_sign, opt_type, used_time, status, experied_date, 
+    rsa_key, result, remark, del_flag, create_by, update_by, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.crt.message.domain.entity3.RsaOptHistoryKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rsa_opt_history_copy
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.crt.message.domain.entity3.RsaOptHistoryKey" >
+    delete from t_rsa_opt_history_copy
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.crt.message.domain.entity3.RsaOptHistory" >
+    insert into t_rsa_opt_history_copy (id, app_token, original_data, 
+      rsa_sign, opt_type, used_time, 
+      status, experied_date, rsa_key, 
+      result, remark, del_flag, 
+      create_by, update_by, create_date, 
+      update_date)
+    values (#{id,jdbcType=BIGINT}, #{appToken,jdbcType=VARCHAR}, #{originalData,jdbcType=VARCHAR}, 
+      #{rsaSign,jdbcType=VARCHAR}, #{optType,jdbcType=INTEGER}, #{usedTime,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{experiedDate,jdbcType=TIMESTAMP}, #{rsaKey,jdbcType=VARCHAR}, 
+      #{result,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, 
+      #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity3.RsaOptHistory" >
+    insert into t_rsa_opt_history_copy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appToken != null" >
+        app_token,
+      </if>
+      <if test="originalData != null" >
+        original_data,
+      </if>
+      <if test="rsaSign != null" >
+        rsa_sign,
+      </if>
+      <if test="optType != null" >
+        opt_type,
+      </if>
+      <if test="usedTime != null" >
+        used_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="experiedDate != null" >
+        experied_date,
+      </if>
+      <if test="rsaKey != null" >
+        rsa_key,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appToken != null" >
+        #{appToken,jdbcType=VARCHAR},
+      </if>
+      <if test="originalData != null" >
+        #{originalData,jdbcType=VARCHAR},
+      </if>
+      <if test="rsaSign != null" >
+        #{rsaSign,jdbcType=VARCHAR},
+      </if>
+      <if test="optType != null" >
+        #{optType,jdbcType=INTEGER},
+      </if>
+      <if test="usedTime != null" >
+        #{usedTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="experiedDate != null" >
+        #{experiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsaKey != null" >
+        #{rsaKey,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.message.domain.entity3.RsaOptHistory" >
+    update t_rsa_opt_history_copy
+    <set >
+      <if test="appToken != null" >
+        app_token = #{appToken,jdbcType=VARCHAR},
+      </if>
+      <if test="originalData != null" >
+        original_data = #{originalData,jdbcType=VARCHAR},
+      </if>
+      <if test="rsaSign != null" >
+        rsa_sign = #{rsaSign,jdbcType=VARCHAR},
+      </if>
+      <if test="optType != null" >
+        opt_type = #{optType,jdbcType=INTEGER},
+      </if>
+      <if test="usedTime != null" >
+        used_time = #{usedTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="experiedDate != null" >
+        experied_date = #{experiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsaKey != null" >
+        rsa_key = #{rsaKey,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.message.domain.entity3.RsaOptHistory" >
+    update t_rsa_opt_history_copy
+    set app_token = #{appToken,jdbcType=VARCHAR},
+      original_data = #{originalData,jdbcType=VARCHAR},
+      rsa_sign = #{rsaSign,jdbcType=VARCHAR},
+      opt_type = #{optType,jdbcType=INTEGER},
+      used_time = #{usedTime,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      experied_date = #{experiedDate,jdbcType=TIMESTAMP},
+      rsa_key = #{rsaKey,jdbcType=VARCHAR},
+      result = #{result,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

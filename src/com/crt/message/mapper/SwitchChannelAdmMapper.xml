@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crt.message.mapper.SwitchChannelAdmMapper">
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.SwitchChannelAdm">
+    <id column="switchChannelAdm_id" jdbcType="BIGINT" property="id" />
+    <result column="switchChannelAdm_code" jdbcType="VARCHAR" property="code" />
+    <result column="switchChannelAdm_user_adm" jdbcType="VARCHAR" property="userAdm" />
+    <result column="switchChannelAdm_user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="switchChannelAdm_channel" jdbcType="VARCHAR" property="channel" />
+    <result column="switchChannelAdm_switch_code" jdbcType="VARCHAR" property="switchCode" />
+    <result column="switchChannelAdm_del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="switchChannelAdm_create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="switchChannelAdm_update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="switchChannelAdm_create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="switchChannelAdm_update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    switchChannelAdm.id as switchChannelAdm_id, switchChannelAdm.code as switchChannelAdm_code, 
+    switchChannelAdm.user_adm as switchChannelAdm_user_adm, switchChannelAdm.user_pwd as switchChannelAdm_user_pwd, 
+    switchChannelAdm.channel as switchChannelAdm_channel, switchChannelAdm.switch_code as switchChannelAdm_switch_code, 
+    switchChannelAdm.del_flag as switchChannelAdm_del_flag, switchChannelAdm.create_by as switchChannelAdm_create_by, 
+    switchChannelAdm.update_by as switchChannelAdm_update_by, switchChannelAdm.create_time as switchChannelAdm_create_time, 
+    switchChannelAdm.update_time as switchChannelAdm_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.crt.message.domain.entity.SwitchChannelAdmKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_switch_channel_adm switchChannelAdm
+    where switchChannelAdm.id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.crt.message.domain.entity.SwitchChannelAdmKey">
+    delete from t_switch_channel_adm
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    insert into t_switch_channel_adm (id, code, user_adm, 
+      user_pwd, channel, switch_code, 
+      del_flag, create_by, update_by, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{userAdm,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{switchCode,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    insert into t_switch_channel_adm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="userAdm != null">
+        user_adm,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="switchCode != null">
+        switch_code,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userAdm != null">
+        #{userAdm,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="switchCode != null">
+        #{switchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    update t_switch_channel_adm
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userAdm != null">
+        user_adm = #{userAdm,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="switchCode != null">
+        switch_code = #{switchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    update t_switch_channel_adm
+    set code = #{code,jdbcType=VARCHAR},
+      user_adm = #{userAdm,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      switch_code = #{switchCode,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.SwitchChannelAdm">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="user_adm" jdbcType="VARCHAR" property="userAdm" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="switch_code" jdbcType="VARCHAR" property="switchCode" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, user_adm, user_pwd, channel, switch_code, del_flag, create_by, update_by, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.crt.message.domain.entity.SwitchChannelAdmKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_switch_channel_adm
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.crt.message.domain.entity.SwitchChannelAdmKey">
+    delete from t_switch_channel_adm
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    insert into t_switch_channel_adm (id, code, user_adm, 
+      user_pwd, channel, switch_code, 
+      del_flag, create_by, update_by, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{userAdm,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{switchCode,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    insert into t_switch_channel_adm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="userAdm != null">
+        user_adm,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="switchCode != null">
+        switch_code,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userAdm != null">
+        #{userAdm,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="switchCode != null">
+        #{switchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    update t_switch_channel_adm
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userAdm != null">
+        user_adm = #{userAdm,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="switchCode != null">
+        switch_code = #{switchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    update t_switch_channel_adm
+    set code = #{code,jdbcType=VARCHAR},
+      user_adm = #{userAdm,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      switch_code = #{switchCode,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.SwitchChannelAdm">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="user_adm" jdbcType="VARCHAR" property="userAdm" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="switch_code" jdbcType="VARCHAR" property="switchCode" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    insert into t_switch_channel_adm (id, code, user_adm, 
+      user_pwd, channel, switch_code, 
+      del_flag, create_by, update_by, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{userAdm,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{switchCode,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    insert into t_switch_channel_adm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="userAdm != null">
+        user_adm,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="switchCode != null">
+        switch_code,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userAdm != null">
+        #{userAdm,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="switchCode != null">
+        #{switchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.crt.message.domain.entity.SwitchChannelAdm">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="user_adm" jdbcType="VARCHAR" property="userAdm" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="switch_code" jdbcType="VARCHAR" property="switchCode" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    insert into t_switch_channel_adm (id, code, user_adm, 
+      user_pwd, channel, switch_code, 
+      del_flag, create_by, update_by, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{userAdm,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{switchCode,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crt.message.domain.entity.SwitchChannelAdm">
+    insert into t_switch_channel_adm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="userAdm != null">
+        user_adm,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="switchCode != null">
+        switch_code,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userAdm != null">
+        #{userAdm,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="switchCode != null">
+        #{switchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
