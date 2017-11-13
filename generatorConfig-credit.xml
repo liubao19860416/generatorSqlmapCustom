@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration >
+	<!-- 通过在mybatis generator配置文件增加属性defaultModelType搜索=“hierarchical”可以控制不生成PrimarykeyClass -->
+	<context id="testTables" targetRuntime="MyBatis3" defaultModelType="hierarchical">
+		<!-- <commentGenerator>
+			是否去除自动生成的注释 true：是 ： false:否
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator> -->
+		<!-- 数据库注释信息自动生成 -->
+		<commentGenerator type="com.utils.QnloftCommentGenerator">
+			<!-- 定义去除自动生成原生注释， true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+			<!-- This property is used to specify whether MBG will include the generation timestamp in the generated comments -->
+    		<property name="suppressDate" value="true"/>
+		</commentGenerator>
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/osp-message" userId="root" password="root"/> -->
+		<jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:XE"  userId="dt" password="dt"/>
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和 
+			NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- targetProject:生成PO类的位置 -->
+		<javaModelGenerator targetPackage="com.yh.loan.front.credit.dao.oracle.entity3" targetProject=".\src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="com.yh.loan.front.credit.dao.oracle.xml3"  targetProject=".\src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.yh.loan.front.credit.dao.oracle.mapper3"  targetProject=".\src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		<!-- 指定数据库表 -->
+		<!-- <table tableName="t_member_mapping"  alias="memberMapping"  domainObjectName="MemberMapping"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  /> -->
+		<table tableName="CIB_BASE%"  enableDeleteByPrimaryKey="false"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  >
+			<!-- 去除字段前缀信息 -->
+			<property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false"  type="pre"/>			
+    		<columnRenamingRule searchString="^T" replaceString=""/> 
+    		
+    		<!-- 公共部分 -->
+            <columnOverride column="id"  property="id" javaType="java.lang.Long"  jdbcType="BIGINT"  typeHandler=""/>
+            
+            <!-- 表结构部分 -->
+    		<!-- 表:CIB_BASE -->
+    		 <columnOverride column="custid"  property="custId" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="custid2"  property="custId2" javaType=""  jdbcType=""  typeHandler=""/>
+    		 
+    		<!-- 忽略列，不生成bean 字段 -->  
+            <ignoreColumn column="code" />
+            <!-- <ignoreColumnsByRegex pattern="*_by" /> -->
+
+		</table>
+		
+		<!-- <table tableName="t_base_entity"  domainObjectName="BaseEntity"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" 
+		enableUpdateByExample="false"  enableDeleteByPrimaryKey="false"  enableSelectByPrimaryKey="false" enableUpdateByPrimaryKey="false" >
+			<property name="useActualColumnNames" value="false"/>
+    		<columnRenamingRule searchString="^T" replaceString=""/> 
+			<columnOverride column="id" property="id" javaType="java.lang.Long"/>
+			<columnOverride column="code" />
+			<columnOverride column="del_flag"  javaType="java.lang.Boolean"/>
+			<columnOverride column="update_by" javaType="java.lang.String"/>
+			<columnOverride column="create_date" property="createDate" javaType="java.util.Date"/>
+			<columnOverride column="update_date"  javaType="java.util.Date"/>
+		</table> -->
+		
+		<!-- 有些表的字段需要指定java类型
+		 <table schema="" tableName="">
+			<columnOverride column="" javaType="" />
+		</table> -->
+	</context>
+</generatorConfiguration>

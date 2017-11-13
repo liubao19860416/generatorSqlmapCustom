@@ -84,6 +84,7 @@
 		<table tableName="t_sys_dict"  alias="sysDict"  domainObjectName="SysDict"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" >
 			<!-- 去除字段前缀信息 -->
 			<property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false"  type="pre"/>			
     		<columnRenamingRule searchString="^T" replaceString=""/> 
     		<!-- 忽略列，不生成bean 字段 -->  
             <!-- <ignoreColumn column="id" />
