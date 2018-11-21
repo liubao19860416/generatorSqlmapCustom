@@ -4,83 +4,386 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration >
-	<!-- 通过在mybatis generator配置文件增加属性defaultModelType搜索=“hierarchical”可以控制不生成PrimarykeyClass -->
 	<context id="testTables" targetRuntime="MyBatis3" defaultModelType="hierarchical">
-		<!-- <commentGenerator>
-			是否去除自动生成的注释 true：是 ： false:否
-			<property name="suppressAllComments" value="true" />
-		</commentGenerator> -->
-		<!-- 数据库注释信息自动生成 -->
 		<commentGenerator type="com.utils.QnloftCommentGenerator">
-			<!-- 定义去除自动生成原生注释， true：是 ： false:否 -->
 			<property name="suppressAllComments" value="true" />
-			<!-- This property is used to specify whether MBG will include the generation timestamp in the generated comments -->
     		<property name="suppressDate" value="true"/>
 		</commentGenerator>
-		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
-		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/osp-message" userId="root" password="root"/> -->
-		<jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:XE"  userId="dt" password="dt"/>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/loan_front_credit" userId="root" password="root"/>
+		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:XE"  userId="dt" password="dt"/> -->
 
-		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和 
-			NUMERIC 类型解析为java.math.BigDecimal -->
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
-
-		<!-- targetProject:生成PO类的位置 -->
+		
 		<javaModelGenerator targetPackage="com.yh.loan.front.credit.dao.oracle.entity3" targetProject=".\src">
-			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
-			<!-- 从数据库返回的值被清理前后的空格 -->
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
-        <!-- targetProject:mapper映射文件生成的位置 -->
-		<sqlMapGenerator targetPackage="com.yh.loan.front.credit.dao.oracle.xml3"  targetProject=".\src">
-			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+		<sqlMapGenerator targetPackage="com.yh.loan.front.credit.dao.oracle.xml4"  targetProject=".\src">
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
-		<!-- targetPackage：mapper接口生成的位置 -->
 		<javaClientGenerator type="XMLMAPPER" targetPackage="com.yh.loan.front.credit.dao.oracle.mapper3"  targetProject=".\src">
-			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
-		<!-- 指定数据库表 -->
-		<!-- <table tableName="t_member_mapping"  alias="memberMapping"  domainObjectName="MemberMapping"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  /> -->
-		<table tableName="CIB_BASE%"  enableDeleteByPrimaryKey="false"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  >
+		
+		<table tableName="%CIB_BASE_DEMO%"  enableDeleteByPrimaryKey="false"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  >
 			<!-- 去除字段前缀信息 -->
 			<property name="useActualColumnNames" value="false"/>
+			 <!--mysql 配置 -->
+            <!-- <generatedKey column="id" sqlStatement="Mysql" identity="true" /> -->
+            <!--oracle 配置 -->
             <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false"  type="pre"/>			
-    		<columnRenamingRule searchString="^T" replaceString=""/> 
-    		
+    		<!-- <columnRenamingRule searchString="^T" replaceString=""/>  -->
     		<!-- 公共部分 -->
             <columnOverride column="id"  property="id" javaType="java.lang.Long"  jdbcType="BIGINT"  typeHandler=""/>
+            <!-- <columnOverride column="transaction_id"  property="transactionId" javaType=""  jdbcType=""  typeHandler=""/> -->
             
-            <!-- 表结构部分 -->
-    		<!-- 表:CIB_BASE -->
-    		 <columnOverride column="custid"  property="custId" javaType=""  jdbcType=""  typeHandler=""/>
-    		 <columnOverride column="custid2"  property="custId2" javaType=""  jdbcType=""  typeHandler=""/>
+             <!-- 表结构部分 -->
+    		 <columnOverride column="CUSTID"  property="custId" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="REPORTORG"  property="reportOrg" javaType=""  jdbcType=""  typeHandler=""/>
     		 
-    		<!-- 忽略列，不生成bean 字段 -->  
-            <ignoreColumn column="code" />
-            <!-- <ignoreColumnsByRegex pattern="*_by" /> -->
-
-		</table>
-		
-		<!-- <table tableName="t_base_entity"  domainObjectName="BaseEntity"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" 
-		enableUpdateByExample="false"  enableDeleteByPrimaryKey="false"  enableSelectByPrimaryKey="false" enableUpdateByPrimaryKey="false" >
-			<property name="useActualColumnNames" value="false"/>
-    		<columnRenamingRule searchString="^T" replaceString=""/> 
+			<!-- 
 			<columnOverride column="id" property="id" javaType="java.lang.Long"/>
 			<columnOverride column="code" />
 			<columnOverride column="del_flag"  javaType="java.lang.Boolean"/>
 			<columnOverride column="update_by" javaType="java.lang.String"/>
 			<columnOverride column="create_date" property="createDate" javaType="java.util.Date"/>
-			<columnOverride column="update_date"  javaType="java.util.Date"/>
-		</table> -->
+			<columnOverride column="update_date"  javaType="java.util.Date"/> -->
+    		<!-- 忽略列，不生成bean 字段 -->  
+            <ignoreColumn column="code" />
+		</table>
 		
-		<!-- 有些表的字段需要指定java类型
-		 <table schema="" tableName="">
-			<columnOverride column="" javaType="" />
-		</table> -->
+		<!-- 正文部分     CIB_FAMIL   CII_SUPERIORORG   CIH_RELATEDENT  CIG_STOCK  CIE_CONTACT  -->
+		<table tableName="cib_famil%"  enableDeleteByPrimaryKey="false"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="select SEQ_INTEINFO.nextval from dual" identity="false"  type="pre"/>            
+            <columnOverride column="id"  property="id" javaType="java.lang.Long"  jdbcType="BIGINT"  typeHandler=""/>
+            
+             <!-- 公共部分-ORACLE -->
+             <columnOverride column="CUSTID"  property="custId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="USERID"  property="userId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="STAT"  property="stat" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="CHANGEDATE"  property="changeDate" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MSGNO"  property="msgNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="BATCHNO"  property="batchNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="VALITYFLAG"  property="valiTyFlag" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REPORTDATE"  property="reportDate" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="RESERVE"  property="reserve" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="INCFLAG"  property="incFlag" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="GETTIME"  property="getTime" javaType=""  jdbcType=""  typeHandler=""/>
+             <!-- 表结构部分 -->
+             
+             <!-- CIE_CONTACT-->
+             <columnOverride column="ORGADDRESS"  property="orgAddress" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ORGTEL"  property="orgTel" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="FINDEPTEL"  property="findepTel" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <!-- CIG_STOCK-->
+             <columnOverride column="STOHOLTYPE"  property="stoholType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="STOHOLNAME"  property="stoholName" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="STAKERATIO"  property="stakeratio" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <!-- CIH_RELATEDENT-->
+             <columnOverride column="RELTYPE"  property="relType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="RELNAME"  property="relName" javaType=""  jdbcType=""  typeHandler=""/>
+             <!-- CII_SUPERIORORG-->
+             <columnOverride column="SUPERNAME"  property="superName" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="RERETP"  property="reReTp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="RERECODE"  property="reReCode" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ORGNO"  property="orgNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ORGCRDNO"  property="orgCrdNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <!-- CIB_FAMIL -->
+             <columnOverride column="REPORTORG"  property="reportOrg" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="EXENAME"  property="exeName" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="EXECERTTYPE"  property="exeCertType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="EXECERTNO"  property="exeCertNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MEMBERTYPE"  property="memberType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MEMNAME"  property="memName" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MEMCERTTYPE"  property="memCertType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MEMCERTNO"  property="memCertNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REPORTDATE"  property="reportDate" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="EXECERTNO"  property="exeCertNo" javaType=""  jdbcType=""  typeHandler=""/>
+              <columnOverride column="RESERVE"  property="reserve" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="DEPTCODE"  property="deptCode" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             
+             <!-- tib_07 -->
+             <!-- tib_07captown_his -->
+             <!-- <columnOverride column="key_zcfz"  property="key_zcfz" javaType=""  jdbcType=""  typeHandler=""/> -->
+             <columnOverride column="repyear"  property="repYear" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="reptp"  property="repTp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="reptpsub"  property="reptTpSub" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="audnm"  property="audNm" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="audmannm"  property="audmanNm" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="audtm"  property="audTm" javaType=""  jdbcType=""  typeHandler=""/>
+             <!-- <columnOverride column="custid2"  property="custid2" javaType=""  jdbcType=""  typeHandler=""/> -->
+             <!-- tib_07profass_his -->
+             <!-- <columnOverride column="key_lrfp"  property="key_lrfp" javaType=""  jdbcType=""  typeHandler=""/> -->
+             <columnOverride column="reportno"  property="reportNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <!-- <columnOverride column="custid2"  property="custid2" javaType=""  jdbcType=""  typeHandler=""/> -->
+             <!-- tib_07rushflux_his -->
+             <!-- <columnOverride column="key_xjll"  property="key_xjll" javaType=""  jdbcType=""  typeHandler=""/> -->
+             
+             <!-- tib_institution -->
+             <!-- tib_institution_captown_his -->
+             <!-- <columnOverride column="key_xydw_zcfz"  property="key_xydw_zcfz" javaType=""  jdbcType=""  typeHandler=""/> -->
+             <!-- tib_institution_srzc_his -->
+             <!-- <columnOverride column="key_xydw_srzc"  property="key_xydw_srzc" javaType=""  jdbcType=""  typeHandler=""/> -->
+             
+             <!-- ti_loanamt_his -->
+             <columnOverride column="lncontamt"  property="lnContAmt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="usingbal"  property="usingBal" javaType=""  jdbcType=""  typeHandler=""/>
+             <!-- ti_loancon_his -->
+             <columnOverride column="contlndt"  property="contlndt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="contenddt"  property="contenddt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="banksign"  property="bankSign" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="assusign"  property="assuSign" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="fstextdt"  property="fstextDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <!-- ti_loanexp_his -->
+             <columnOverride column="exptms"  property="expTms" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="expamt"  property="expAmt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="expbndt"  property="expBnDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="expretedt"  property="expReteDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <!--  ti_loanpay_his-->
+             <columnOverride column="repaydt"  property="repayDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="repaytms"  property="repayTms" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="repaymode"  property="repayMode" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="repayamt"  property="repayAmt" javaType=""  jdbcType=""  typeHandler=""/>
+             
+              <!-- TI_INTEINFO_HIS -->
+             <columnOverride column="debtbal"  property="debtBal" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="debttype"  property="debtType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="balaltdt"  property="balAltDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="key_qx"  property="keyQx" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <!-- TI_MORTGUAR TI_MORTGUAR33 -->
+             <!-- TI_MORTENT TI_MORTENT33 -->
+             <columnOverride column="edt"  property="eDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="enm"  property="eNm" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="eorgno"  property="eOrgno" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="morttp"  property="mortTp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="regdept"  property="regDept" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="regdt"  property="regDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="grexp"  property="greXp" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <!-- TI_IMPGUAR TI_IMPGUAR34 -->
+             <!-- TI_IMPENT_HIS TI_IMPENT_HIS34 -->
+             <columnOverride column="GRNO"  property="grNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ECURTP"  property="eCurTp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ASSAMT"  property="assAmt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="EAMT"  property="eAmt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="GRARATP"  property="graraTp" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             
+             <!-- TI_GUARRELA_HIS  SEQ_T_GUARRELA_ID-->
+             <columnOverride column="GUARTYPE"  property="guarType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="CREDITTYPE"  property="creditType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="KEY_ZHT"  property="keyZht" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="KEY_GUAR"  property="keyGuar" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MAINCONTNO"  property="mainContno" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MAINDEPTCODE"  property="mainDeptCode" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="GUARDEPTCODE"  property="guarDeptCode" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             
+             <!-- Ti_GUARENT,Ti_GUARENT32  SEQ_T_GUARENT_ID  SEQ_T_GUARENT32_ID-->
+              <columnOverride column="ASSNM"  property="assNm" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="GLNCARDNO"  property="glnCardNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ASSAMT"  property="assAmt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="CERTNO"  property="certNo" javaType=""  jdbcType=""  typeHandler=""/>
+              <columnOverride column="CERTTYPE"  property="certType" javaType=""  jdbcType=""  typeHandler=""/>
+              <columnOverride column="ASSNM"  property="assNm" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             
+             <!-- TI_GUARANTEE_HIS  SEQ_T_GUARANTEE_ID,TI_GUARANTEE32_HIS SEQ_T_GUARANTEE32_ID-->
+             <columnOverride column="KEY_GUAR"  property="keyGuar" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="GUARCONTNO"  property="guarContno" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="CONTDT"  property="contDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ASSUTP"  property="assuTp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="CONTEST"  property="conTest" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <!-- TI_DUEBILL_HIS SEQ_DUEBILL -->
+             <columnOverride column="KEY_DKHT"  property="keyDkht" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="KEY_DKJJ"  property="keyDkjj" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LNCARDNO"  property="lnCardno" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LNCONTCODE"  property="lnContCode" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="DUECODE"  property="dueCode" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="DEPTCODE"  property="deptCode" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="FINACODE"  property="finaCode" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <columnOverride column="BUSSDT"  property="bussdt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="CURTP"  property="curTp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LNDUEAMT"  property="lnDueAmt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LNDUEBAL"  property="lnDueBal" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="DUELNDT"  property="dueLnDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="DUELNRETDT"  property="dueLnRetDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LNTP"  property="lnTp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LNMODA"  property="lnModa" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LNHABIT"  property="lnHabit" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LNPURP"  property="lnpurp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LNTYPE"  property="lnType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="EXPERSIGN"  property="experSign" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="FOURCLASS"  property="fourClass" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="FIVECLASS"  property="fiveClass" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="RATE"  property="rate" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="BRATE"  property="brate" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <columnOverride column="protCode"  property="protCode" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="borrnm"  property="borrnm" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="lnCardno"  property="lnCardno" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="trulMt"  property="trulMt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="truStDt"  property="truStDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="truEdDt"  property="truEdDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="trulMtCcDt"  property="trulMtCcDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="trulMtCcRn"  property="trulMtCcRn" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <columnOverride column="KEY_GKSX"  property="keyGksx" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="FINACODE"  property="finaCode" javaType=""  jdbcType=""  typeHandler=""/>
+             
+        </table>
+        
+		<table tableName="TI_CREDIT_OK"  enableDeleteByPrimaryKey="false"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="select SEQ_T_CREDIT_ID.nextval from dual" identity="false"  type="pre"/>            
+            <columnOverride column="id"  property="id" javaType="java.lang.Long"  jdbcType="BIGINT"  typeHandler=""/>
+            
+             <!-- 公共部分-ORACLE -->
+             <columnOverride column="CUSTID"  property="custId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="USERID"  property="userId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="STAT"  property="stat" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="CHANGEDATE"  property="changeDate" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MSGNO"  property="msgNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="BATCHNO"  property="batchNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="VALITYFLAG"  property="valiTyFlag" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <!-- 表结构部分 -->
+             <columnOverride column="protCode"  property="protCode" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="deptCode"  property="deptCode" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="bussdt"  property="bussdt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="borrnm"  property="borrnm" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="lnCardno"  property="lnCardno" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="curTp"  property="curTp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="trulMt"  property="trulMt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="truStDt"  property="truStDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="truEdDt"  property="truEdDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="trulMtCcDt"  property="trulMtCcDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="trulMtCcRn"  property="trulMtCcRn" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <columnOverride column="KEY_GKSX"  property="keyGksx" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="FINACODE"  property="finaCode" javaType=""  jdbcType=""  typeHandler=""/>
+        </table>
+		
+		<table tableName="CIF_EXECUTIVE_OK"  enableDeleteByPrimaryKey="false"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="select SEQ_CDSTATUS_ID.nextval from dual" identity="false"  type="pre"/>            
+            <columnOverride column="id"  property="id" javaType="java.lang.Long"  jdbcType="BIGINT"  typeHandler=""/>
+            
+             <!-- 公共部分-ORACLE -->
+             <columnOverride column="CUSTID"  property="custId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REPORTORG"  property="reportOrg" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <!-- 表结构部分 -->
+             <columnOverride column="EXECUTIVETP"  property="exeCutiveTp" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="NAME"  property="name" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="CERTTYPE"  property="certType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="CERTNO"  property="certNo" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <columnOverride column="REPORTDATE"  property="reportDate" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="RESERVE"  property="reserve" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="VALITYFLAG"  property="valiTyFlag" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="STAT"  property="stat" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MSGNO"  property="msgNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="INCFLAG"  property="incFlag" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="USERID"  property="userId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="GETTIME"  property="getTime" javaType=""  jdbcType=""  typeHandler=""/>
+        </table>
+		
+		<table tableName="CID_STATUS_OK"  enableDeleteByPrimaryKey="false"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="select SEQ_CDSTATUS_ID.nextval from dual" identity="false"  type="pre"/>            
+            <columnOverride column="id"  property="id" javaType="java.lang.Long"  jdbcType="BIGINT"  typeHandler=""/>
+            
+             <!-- 公共部分-ORACLE -->
+             <columnOverride column="CUSTID"  property="custId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REPORTORG"  property="reportOrg" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <!-- 表结构部分 -->
+             <columnOverride column="ACCSTATUS"  property="accStatus" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ENTSCALE"  property="entScale" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ORGSTATUS"  property="orgStatus" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <columnOverride column="REPORTDATE"  property="reportDate" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="RESERVE"  property="reserve" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="VALITYFLAG"  property="valiTyFlag" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="STAT"  property="stat" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MSGNO"  property="msgNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="INCFLAG"  property="incFlag" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="USERID"  property="userId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="GETTIME"  property="getTime" javaType=""  jdbcType=""  typeHandler=""/>
+        </table>
+		
+		<table tableName="CIC_ATTRIBUTE_OK"  enableDeleteByPrimaryKey="false"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="select SEQ_CCATTRIBUTE_ID.nextval from dual" identity="false"  type="pre"/>            
+            <columnOverride column="id"  property="id" javaType="java.lang.Long"  jdbcType="BIGINT"  typeHandler=""/>
+            
+             <!-- 公共部分-ORACLE -->
+             <columnOverride column="CUSTID"  property="custId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REPORTORG"  property="reportOrg" javaType=""  jdbcType=""  typeHandler=""/>
+             
+             <!-- 表结构部分 -->
+             <columnOverride column="OCNM"  property="ocNm" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="OFNM"  property="ofNm" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REGADD"  property="regAdd" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="NATION"  property="nation" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REGION"  property="region" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REREDT"  property="rereDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="LICRETDT"  property="licretDt" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="BUSSCOPE"  property="bussCope" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REGCAPCUR"  property="regCapCur" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REGCAPITAL"  property="regCapiTal" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ORGTYPE"  property="orgType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ORGCATEGORY"  property="orgCateGory" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="INDUCLASS"  property="induclass" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="ECONOMICTYPE"  property="economicType" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="REPORTDATE"  property="reportDate" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="RESERVE"  property="reserve" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="VALITYFLAG"  property="valiTyFlag" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="STAT"  property="stat" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="MSGNO"  property="msgNo" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="INCFLAG"  property="incFlag" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="USERID"  property="userId" javaType=""  jdbcType=""  typeHandler=""/>
+             <columnOverride column="GETTIME"  property="getTime" javaType=""  jdbcType=""  typeHandler=""/>
+        </table>
+		
+		<table tableName="CIB_BASE_OK%"  enableDeleteByPrimaryKey="false"  enableSelectByExample="false"  enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false"  >
+            <generatedKey column="id" sqlStatement="select SEQ_CBBASE_ID.nextval from dual" identity="false"  type="pre"/>			
+            <columnOverride column="id"  property="id" javaType="java.lang.Long"  jdbcType="BIGINT"  typeHandler=""/>
+    		 <!-- <columnOverride column="transaction_id"  property="transactionId" javaType=""  jdbcType=""  typeHandler=""/> -->
+            
+            <!-- 表结构部分 -->
+    		 <columnOverride column="CUSTID"  property="custId" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="REPORTORG"  property="reportOrg" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="DEPTCODE"  property="deptCode" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="ORGCODE"  property="orgCode" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="CUSTTYPE"  property="custType" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="ORGCRDNO"  property="orgCrdNo" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="ORGNO"  property="orgNo" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="RERETP"  property="reReTp" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="RERECODE"  property="reReCode" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="GENTAXNO"  property="genTaxNo" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="LOCTAXNO"  property="locTaxNo" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="ACCPERMITNO"  property="accpermitNo" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="LNCARDNO"  property="lnCardno" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="REPORTDATE"  property="reportDate" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="RESERVE"  property="reserve" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="VALITYFLAG"  property="valiTyFlag" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="STAT"  property="stat" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="MSGNO"  property="msgNo" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="INCFLAG"  property="incFlag" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="USERID"  property="userId" javaType=""  jdbcType=""  typeHandler=""/>
+    		 <columnOverride column="GETTIME"  property="getTime" javaType=""  jdbcType=""  typeHandler=""/>
+		</table>
+		
 	</context>
 </generatorConfiguration>

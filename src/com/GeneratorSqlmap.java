@@ -8,6 +8,13 @@ import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
+/**
+ * 这里值生成对应的xml文件,具体的实体bean和Mapper不在这里
+ * 
+ * @Author  LiuBao
+ * @Version 2.0
+ *   2017年11月13日
+ */
 public class GeneratorSqlmap {
 
 	public void generator() throws Exception{
